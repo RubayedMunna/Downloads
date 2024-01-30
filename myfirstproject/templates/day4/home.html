@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Course List</h1>
+    <table border="1">
+      <tr>
+        <td>Course Id</td>
+        <td>Course Title</td>
+        <td>Credit</td>
+        <td>Course Type</td>
+        <td>Tutorial Full Marks</td>
+        <td>Attendance Full Marks</td>
+        <td>Final Full Marks</td>
+        <td>ACTION</td>
+      </tr>
+      {% for cors in all_courses %}
+      <tr>
+        <td>{{cors.course_id}}</td>
+        <td>{{cors.course_name}}</td>
+        <td>{{cors.course_credit}}</td>
+        <td>{{cors.course_type}}</td>
+        <td>{{cors.tutorial_full_marks}}</td>
+        <td>{{cors.att_full_marks}}</td>
+        <td>{{cors.final_full_marks}}</td>
+        <td>
+          <a href="{% url 'edit' cors.id %}"> EDIT </a>
+          <a href="{% url 'remove' cors.id %}"> DELETE </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{% url 'add' %}">ADD NEW COURSE </a>
+  </body>
+</html>
