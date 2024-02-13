@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="container mt-5">
+
+    <h1 class="mb-4">Add New Student</h1>
+
+    <form action="{% url 'save_student' %}" method="POST" class="row g-3">
+        {% csrf_token %}
+        
+        <div class="col-md-12">
+            <label for="roll" class="form-label">Enter Student Id:</label>
+            {{ form.roll }}
+        </div>
+        
+        <div class="col-md-12">
+            <label for="name" class="form-label">Enter Name:</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="col-12">
+            <label for="department" class="form-label">Enter Department:</label>
+            {{ form.department }}
+        </div>
+        
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">SAVE</button>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-9aVpbqE+VlVaUgy6qJFyqAuC6z6ZWh1va/pSiFcXt9XZ5IliNA06Zfwj5XIJKbRo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-e05S1ZZpJvZ0RAjbow4iYXwbKggr3q0h7PUYsJqxh1zI2YNX2wOQKx8+dDEqI0EL" crossorigin="anonymous"></script>
+</body>
+</html>

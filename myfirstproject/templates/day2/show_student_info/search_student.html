@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'homepage' %}">Course Registration System</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'student_list' %}">Student List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'courses' %}">Course List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'search_student' %}">Course Registration</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="mt-4">
+            
+            <form method="GET" action="{% url 'search_student' %}" class="mb-3">
+                <label for="student_id" class="form-label">Student ID:</label>
+                <input type="text" id="student_id" name="student_id" class="form-control">
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+            
+            {% if student %}
+                <div>
+                    <p>Student ID: {{ student.roll }}</p>
+                    <p>Name: {{ student.name }}</p>
+                    <p>Department: {{ student.department }}</p>
+                    
+                    <h2>Registered Courses</h2>
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Course ID</th>
+                                <th>Course Title</th>
+                                <th>Credit</th>
+                                <th>Course Type</th>
+                                <th>Tutorial Full Marks</th>
+                                <th>Attendance Full Marks</th>
+                                <th>Final Full Marks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in student.courses.all %}
+                                <tr>
+                                    <td>{{ course.course_id }}</td>
+                                    <td>{{ course.course_name }}</td>
+                                    <td>{{ course.course_credit }}</td>
+                                    <td>{{ course.course_type }}</td>
+                                    <td>{{ course.tutorial_full_marks }}</td>
+                                    <td>{{ course.att_full_marks }}</td>
+                                    <td>{{ course.final_full_marks }}</td>
+                                    <td>
+                                        <form method="POST" action="{% url 'remove_course' student.id course.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p><a href="{% url 'register' student.roll %}" class="btn btn-primary">Register Courses</a></p>
+                </div>
+            {% elif student %}
+                <p>No student found with the given ID.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-9aVpbqE+VlVaUgy6qJFyqAuC6z6ZWh1va/pSiFcXt9XZ5IliNA06Zfwj5XIJKbRo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-e05S1ZZpJvZ0RAjbow4iYXwbKggr3q0h7PUYsJqxh1zI2YNX2wOQKx8+dDEqI0EL" crossorigin="anonymous"></script>
+</body>
+</html>
