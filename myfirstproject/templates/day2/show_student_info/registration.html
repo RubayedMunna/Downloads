@@ -15,7 +15,7 @@
         {% csrf_token %}
         
         <div class="mb-3">
-            <label for="courses" class="form-label">Select A Course</label>
+            <label for="courses" class="form-label">Select a course for {{student.name}}</label>
             <select id="courses" name="courses" class="form-select">
                 {% for course in remaining_courses %}
                     <option value="{{ course.id }}">{{ course.course_name }}</option>

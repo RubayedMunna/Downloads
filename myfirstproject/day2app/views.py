@@ -55,7 +55,7 @@ def register(request, student_id):
     try:
         student = Student.objects.get(roll=student_id)
     except Student.DoesNotExist:
-        return redirect('home')  # Redirect if student with given ID does not exist
+        return redirect('home')
 
     if request.method == 'POST':
         selected_courses_ids = request.POST.getlist('courses')
