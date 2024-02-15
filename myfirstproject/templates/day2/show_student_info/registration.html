@@ -6,15 +6,16 @@
     <title>Register Courses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body class="container mt-5">
+<body class="container mt-5 d-flex justify-content-center">
 
-    <h1>Available Courses</h1>
+    <div class="w-50">
+        <h1>Available Courses</h1>
 
-    <form method="POST" action="{% url 'register' student.roll %}" class="mb-3">
+    <form method="POST" action="{% url 'register' student.roll %}" class="mb-3 border p-3 rounded">
         {% csrf_token %}
         
         <div class="mb-3">
-            <label for="courses" class="form-label">Select Courses</label>
+            <label for="courses" class="form-label">Select A Course</label>
             <select id="courses" name="courses" class="form-select">
                 {% for course in remaining_courses %}
                     <option value="{{ course.id }}">{{ course.course_name }}</option>
@@ -25,6 +26,9 @@
         <button type="submit" class="btn btn-primary">Register Courses</button>
     </form>
 
+    </div>
+
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-9aVpbqE+VlVaUgy6qJFyqAuC6z6ZWh1va/pSiFcXt9XZ5IliNA06Zfwj5XIJKbRo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-e05S1ZZpJvZ0RAjbow4iYXwbKggr3q0h7PUYsJqxh1zI2YNX2wOQKx8+dDEqI0EL" crossorigin="anonymous"></script>
 </body>
