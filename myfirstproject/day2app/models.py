@@ -1,5 +1,5 @@
 from django.db import models
-from day4app.models import Course  # Import the Course model from the correct app
+from day4app.models import Course
 
 class Student(models.Model):
     roll = models.IntegerField()

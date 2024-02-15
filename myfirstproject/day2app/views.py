@@ -1,6 +1,5 @@
 
-# day2app/views.py
-from django.shortcuts import render, get_object_or_404 ,redirect # Add this line
+from django.shortcuts import render, get_object_or_404 ,redirect
 from .models import Student, Course
 from django.http import HttpResponse
 from .forms import StudentForm, CourseForm

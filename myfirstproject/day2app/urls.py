@@ -1,4 +1,3 @@
-# day2app/urls.py
 from django.urls import path
 from . import views
 from .views import student_list, student_info, course_list, assign_course, remove_course, homepage,courses, search_student
